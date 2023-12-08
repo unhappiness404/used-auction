@@ -1,5 +1,6 @@
-package com.toyproject.usedauction.domain.post;
+package com.toyproject.usedauction.domain.joinUser;
 
+import com.toyproject.usedauction.domain.post.Post;
 import com.toyproject.usedauction.domain.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
