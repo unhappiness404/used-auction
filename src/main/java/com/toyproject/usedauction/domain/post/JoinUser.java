@@ -1,4 +1,4 @@
-package com.toyproject.usedauction.domain.product;
+package com.toyproject.usedauction.domain.post;
 
 import com.toyproject.usedauction.domain.user.User;
 import jakarta.persistence.Column;
@@ -22,7 +22,7 @@ public class JoinUser {
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "product_id")
-	private Product product;
+	@JoinColumn(name = "post_id")
+	private Post post;
 
 }

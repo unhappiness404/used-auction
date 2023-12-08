@@ -1,4 +1,4 @@
-package com.toyproject.usedauction.domain;
+package com.toyproject.usedauction.domain.BaseEntity;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
