@@ -1,5 +1,6 @@
 package com.toyproject.usedauction.domain.product;
 
+import com.toyproject.usedauction.domain.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,7 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Product {
+public class Product extends BaseEntity {
 
 	@Id
 	@Column(name = "product_id")
