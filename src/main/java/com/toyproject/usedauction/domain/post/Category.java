@@ -1,4 +1,4 @@
-package com.toyproject.usedauction.domain.product;
+package com.toyproject.usedauction.domain.post;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,21 +9,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class ProductImage {
+public class Category {
 
 	@Id
-	@Column(name = "product_image_id")
+	@Column(name = "category_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(nullable = false)
 	private String name;
 
-	@Column(nullable = false)
-	private String url;
-
 	@ManyToOne
-	@JoinColumn(name = "product_id")
-	private Product product;
-
+	@JoinColumn(name = "post_id")
+	private Post post;
 }

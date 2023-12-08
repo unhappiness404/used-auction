@@ -1,4 +1,4 @@
-package com.toyproject.usedauction.domain.product;
+package com.toyproject.usedauction.domain.post;
 
 public enum OrderPriceType {
 

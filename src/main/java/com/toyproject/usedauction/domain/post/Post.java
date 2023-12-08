@@ -1,6 +1,6 @@
-package com.toyproject.usedauction.domain.product;
+package com.toyproject.usedauction.domain.post;
 
-import com.toyproject.usedauction.domain.BaseEntity;
+import com.toyproject.usedauction.domain.BaseEntity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,10 +10,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Product extends BaseEntity {
+public class Post extends BaseEntity {
 
 	@Id
-	@Column(name = "product_id")
+	@Column(name = "post_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
