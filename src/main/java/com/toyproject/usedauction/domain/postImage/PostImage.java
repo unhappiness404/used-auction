@@ -1,5 +1,6 @@
 package com.toyproject.usedauction.domain.postImage;
 
+import com.toyproject.usedauction.domain.baseEntity.BaseEntity;
 import com.toyproject.usedauction.domain.post.Post;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,9 +9,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
 @Entity
-public class PostImage {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class PostImage extends BaseEntity {
 
 	@Id
 	@Column(name = "post_image_id")
@@ -27,4 +34,10 @@ public class PostImage {
 	@JoinColumn(name = "post_id")
 	private Post post;
 
+	@Builder
+	public PostImage(String name, String url, Post post) {
+		this.name = name;
+		this.url = url;
+		this.post = post;
+	}
 }
