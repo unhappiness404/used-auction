@@ -1,15 +1,19 @@
 package com.toyproject.usedauction.domain.category;
 
+import com.toyproject.usedauction.domain.baseEntity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-public class Category {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Category extends BaseEntity {
 
 	@Id
 	@Column(name = "category_id")
@@ -19,4 +23,7 @@ public class Category {
 	@Column(nullable = false)
 	private CategoryType categoryType;
 
+	public Category(CategoryType categoryType) {
+		this.categoryType = categoryType;
+	}
 }
