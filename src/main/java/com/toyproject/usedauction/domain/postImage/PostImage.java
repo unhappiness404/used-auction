@@ -35,9 +35,12 @@ public class PostImage extends BaseEntity {
 	private Post post;
 
 	@Builder
-	public PostImage(String name, String url, Post post) {
+	private PostImage(String name, String url) {
 		this.name = name;
 		this.url = url;
+	}
+
+	public void setPost(Post post) {
 		this.post = post;
 	}
 }
