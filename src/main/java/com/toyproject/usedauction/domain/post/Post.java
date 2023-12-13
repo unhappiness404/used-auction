@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,7 +36,9 @@ public class Post extends BaseEntity {
 
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
-	private ClosingTime closingTime;
+	private ClosingTimeType closingTimeType;
+
+	private LocalDateTime closingTime;
 
 	@Column(nullable = false)
 	private int startPrice;
@@ -59,14 +62,17 @@ public class Post extends BaseEntity {
 	private Category category;
 
 	@Builder
-	private Post(String title, String content, ClosingTime closingTime, int startPrice, int endPrice,
-		int nowPrice, OrderPriceType orderPriceType, User writer, Category category) {
+	private Post(String title, String content, ClosingTimeType closingTimeType,
+		int startPrice, int endPrice, OrderPriceType orderPriceType,
+		User writer, Category category) {
+
 		this.title = title;
 		this.content = content;
-		this.closingTime = closingTime;
+		this.closingTimeType = closingTimeType;
+		this.closingTime = (LocalDateTime.now().plusDays(closingTimeType.getDay()));
 		this.startPrice = startPrice;
 		this.endPrice = endPrice;
-		this.nowPrice = nowPrice;
+		this.nowPrice = startPrice;
 		this.orderPriceType = orderPriceType;
 		this.writer = writer;
 		this.category = category;
