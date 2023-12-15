@@ -65,18 +65,22 @@ public class Post extends BaseEntity {
 
 	@Builder
 	private Post(String title, String content, ClosingTimeType closingTimeType,
-		int startPrice, int endPrice, OrderPriceType orderPriceType,
-		User writer, Category category) {
+		LocalDateTime registerDateTime, int startPrice, int endPrice,
+		OrderPriceType orderPriceType, User writer, Category category) {
 
 		this.title = title;
 		this.content = content;
 		this.closingTimeType = closingTimeType;
-		this.closingTime = (LocalDateTime.now().plusDays(closingTimeType.getDay()));
+		this.closingTime = calcClosingTime(registerDateTime);
 		this.startPrice = startPrice;
 		this.endPrice = endPrice;
 		this.nowPrice = startPrice;
 		this.orderPriceType = orderPriceType;
 		this.writer = writer;
 		this.category = category;
+	}
+
+	private LocalDateTime calcClosingTime(LocalDateTime registerDateTime) {
+		return registerDateTime.plusDays(this.closingTimeType.getDay());
 	}
 }
