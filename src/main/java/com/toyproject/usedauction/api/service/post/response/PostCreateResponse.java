@@ -46,7 +46,7 @@ public class PostCreateResponse {
 			.title(post.getTitle())
 			.content(post.getContent())
 			.closingTimeType(post.getClosingTimeType())
-			.closingTime(LocalDateTime.now().plusDays(post.getClosingTimeType().getDay()))
+			.closingTime(post.getClosingTime())
 			.startPrice(post.getStartPrice())
 			.endPrice(post.getEndPrice())
 			.orderPriceType(post.getOrderPriceType())

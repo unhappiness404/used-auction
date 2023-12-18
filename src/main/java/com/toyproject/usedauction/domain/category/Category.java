@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +29,7 @@ public class Category extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private CategoryType categoryType;
 
+	@Builder
 	public Category(CategoryType categoryType) {
 		this.categoryType = categoryType;
 	}
