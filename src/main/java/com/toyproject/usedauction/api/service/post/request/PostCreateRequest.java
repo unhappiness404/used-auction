@@ -5,6 +5,8 @@ import com.toyproject.usedauction.domain.post.ClosingTimeType;
 import com.toyproject.usedauction.domain.post.OrderPriceType;
 import com.toyproject.usedauction.domain.post.Post;
 import com.toyproject.usedauction.domain.user.User;
+
+import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,11 +39,12 @@ public class PostCreateRequest {
 		this.categoryId = categoryId;
 	}
 
-	public Post toEntity(User writer, Category category) {
+	public Post toEntity(User writer, Category category, LocalDateTime registerDateTime) {
 		return Post.builder()
 			.title(title)
 			.content(content)
 			.closingTimeType(closingTimeType)
+			.registerDateTime(registerDateTime)
 			.startPrice(startPrice)
 			.endPrice(endPrice)
 			.orderPriceType(orderPriceType)
