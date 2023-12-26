@@ -1,4 +1,10 @@
 spring:
   profiles:
-    active: local
-    include: secret
+    active:
+      - local
+    group:
+      local: "local-db, local-auth"
+      test: "test-db"
+    include:
+      - db
+      - auth

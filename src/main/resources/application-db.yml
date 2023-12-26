@@ -4,6 +4,13 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local-db
+
   jpa:
     hibernate:
       ddl-auto: create
@@ -11,9 +18,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    defer-datasource-initialization: true
+
   sql:
     init:
-      mode: never
+      mode: always
 
 # aws s3
 cloud:
@@ -32,3 +41,20 @@ cloud:
     multipart:
       max-file-size: 4MB # 파일 하나 당 최대 사이즈
       max-request-size: 20MB # 요청 당 최대 사이즈
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test-db
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: never
