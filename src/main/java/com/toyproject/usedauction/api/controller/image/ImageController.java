@@ -5,17 +5,19 @@ import com.toyproject.usedauction.api.service.image.response.PostImageResponse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class ImageController {
 
 	private final ImageFileUploadService imageFileUploadService;
 
-	@PostMapping("/api/posts/images")
+	@PostMapping("/posts/images")
 	public List<PostImageResponse> uploadImages(@RequestParam("file") List<MultipartFile> files) {
 		return imageFileUploadService.upload(files);
 	}
