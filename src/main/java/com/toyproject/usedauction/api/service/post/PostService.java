@@ -6,12 +6,8 @@ import com.toyproject.usedauction.domain.category.Category;
 import com.toyproject.usedauction.domain.category.CategoryRepository;
 import com.toyproject.usedauction.domain.post.Post;
 import com.toyproject.usedauction.domain.post.PostRepository;
-import com.toyproject.usedauction.domain.postImage.PostImage;
-import com.toyproject.usedauction.domain.postImage.PostImageRepository;
 import com.toyproject.usedauction.domain.user.User;
 import com.toyproject.usedauction.domain.user.UserRepository;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +19,6 @@ public class PostService {
 	private final PostRepository postRepository;
 	private final UserRepository userRepository;
 	private final CategoryRepository categoryRepository;
-	private final PostImageRepository postImageRepository;
 
 	@Transactional
 	public PostCreateResponse createPost(PostCreateRequest postCreateRequest) {
@@ -37,16 +32,7 @@ public class PostService {
 
 		Post savePost = postRepository.save(post);
 
-		List<String> imageNames = postCreateRequest.getImageNames();
-		List<PostImage> findImages = postImageRepository.findAllByNameIn(imageNames);
-		List<String> imageUrls = new ArrayList<>();
-
-		for (PostImage postImage : findImages) {
-			postImage.setPost(savePost);
-			imageUrls.add(postImage.getUrl());
-		}
-
-		return PostCreateResponse.of(savePost, imageUrls);
+		return PostCreateResponse.of(savePost);
 	}
 
 }
