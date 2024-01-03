@@ -1,5 +1,7 @@
 package com.toyproject.usedauction.domain.post;
 
+import com.toyproject.usedauction.api.controller.post.request.PostUpdateRequest;
+import com.toyproject.usedauction.api.service.post.request.PostUpdateServiceRequest;
 import com.toyproject.usedauction.domain.baseEntity.BaseEntity;
 import com.toyproject.usedauction.domain.category.Category;
 import com.toyproject.usedauction.domain.user.User;
@@ -80,7 +82,13 @@ public class Post extends BaseEntity {
 		this.category = category;
 	}
 
+	public void updateTitleAndContent(PostUpdateServiceRequest request) {
+		title = request.getTitle();
+		content = request.getContent();
+	}
+
 	private LocalDateTime calcClosingTime(LocalDateTime registerDateTime) {
 		return registerDateTime.plusDays(this.closingTimeType.getDay());
 	}
+
 }
