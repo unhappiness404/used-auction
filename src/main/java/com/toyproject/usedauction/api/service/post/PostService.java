@@ -4,10 +4,12 @@ import com.toyproject.usedauction.api.service.post.request.PostCreateServiceRequ
 import com.toyproject.usedauction.api.service.post.response.PostCreateResponse;
 import com.toyproject.usedauction.domain.category.Category;
 import com.toyproject.usedauction.domain.category.CategoryRepository;
+import com.toyproject.usedauction.domain.category.exception.NotFoundCategoryException;
 import com.toyproject.usedauction.domain.post.Post;
 import com.toyproject.usedauction.domain.post.PostRepository;
 import com.toyproject.usedauction.domain.user.User;
 import com.toyproject.usedauction.domain.user.UserRepository;
+import com.toyproject.usedauction.domain.user.exception.NotFoundUserException;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,24 +29,18 @@ public class PostService {
 		Category findCategory = getCategoryById(request.getCategoryId());
 
 		Post post = request.toEntity(findUser, findCategory, registerDateTime);
-		Post savePost = savePostEntity(post);
 
-		return PostCreateResponse.of(savePost);
+		return PostCreateResponse.of(postRepository.save(post));
 	}
 
 	private User getUserById(Long userId) {
 		return userRepository.findById(userId)
-			.orElseThrow(() -> new IllegalArgumentException("해당 user id가 존재하지 않습니다."));
+			.orElseThrow(() -> new NotFoundUserException());
 	}
 
 	private Category getCategoryById(Long categoryId) {
 		return categoryRepository.findById(categoryId)
-			.orElseThrow(() -> new IllegalArgumentException("해당 category id가 존재하지 않습니다."));
+			.orElseThrow(() -> new NotFoundCategoryException());
 	}
-
-	private Post savePostEntity(Post post) {
-		return postRepository.save(post);
-	}
-
 
 }
