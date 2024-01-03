@@ -1,6 +1,6 @@
 package com.toyproject.usedauction.api.service.post;
 
-import com.toyproject.usedauction.api.service.post.request.PostCreateRequest;
+import com.toyproject.usedauction.api.service.post.request.PostCreateServiceRequest;
 import com.toyproject.usedauction.api.service.post.response.PostCreateResponse;
 import com.toyproject.usedauction.domain.category.Category;
 import com.toyproject.usedauction.domain.category.CategoryRepository;
@@ -22,11 +22,11 @@ public class PostService {
 	private final CategoryRepository categoryRepository;
 
 	@Transactional
-	public PostCreateResponse createPost(PostCreateRequest postCreateRequest, LocalDateTime registerDateTime) {
-		User findUser = getUserById(postCreateRequest.getUserId());
-		Category findCategory = getCategoryById(postCreateRequest.getCategoryId());
+	public PostCreateResponse createPost(PostCreateServiceRequest request, LocalDateTime registerDateTime) {
+		User findUser = getUserById(request.getUserId());
+		Category findCategory = getCategoryById(request.getCategoryId());
 
-		Post post = postCreateRequest.toEntity(findUser, findCategory, registerDateTime);
+		Post post = request.toEntity(findUser, findCategory, registerDateTime);
 		Post savePost = savePostEntity(post);
 
 		return PostCreateResponse.of(savePost);

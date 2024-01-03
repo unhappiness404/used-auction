@@ -1,29 +1,34 @@
-package com.toyproject.usedauction.api.service.post.request;
+package com.toyproject.usedauction.api.controller.post.request;
 
-import com.toyproject.usedauction.domain.category.Category;
+import com.toyproject.usedauction.api.service.post.request.PostCreateServiceRequest;
 import com.toyproject.usedauction.domain.post.ClosingTimeType;
 import com.toyproject.usedauction.domain.post.OrderPriceType;
-import com.toyproject.usedauction.domain.post.Post;
-import com.toyproject.usedauction.domain.user.User;
-
-import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Getter
 @NoArgsConstructor
-@ToString
 public class PostCreateRequest {
 
+	@NotBlank(message = "제목은 필수입니다.")
 	private String title;
+	@NotBlank(message = "내용은 필수입니다.")
 	private String content;
+	@NotNull(message = "마감시간은 필수입니다.")
 	private ClosingTimeType closingTimeType;
+	@Positive(message = "시작가격은 필수입니다.")
 	private int startPrice;
+	@Positive(message = "상한가격은 필수입니다.")
 	private int endPrice;
+	@NotNull(message = "입찰금액 단위는 필수입니다.")
 	private OrderPriceType orderPriceType;
+	@NotBlank(message = "유저 id는 필수입니다.")
 	private Long userId;
+	@NotBlank(message = "카테고리 id는 필수입니다.")
 	private Long categoryId;
 
 	@Builder
@@ -39,17 +44,17 @@ public class PostCreateRequest {
 		this.categoryId = categoryId;
 	}
 
-	public Post toEntity(User writer, Category category, LocalDateTime registerDateTime) {
-		return Post.builder()
+	public PostCreateServiceRequest toServiceRequest() {
+		return PostCreateServiceRequest.builder()
 			.title(title)
 			.content(content)
 			.closingTimeType(closingTimeType)
-			.registerDateTime(registerDateTime)
 			.startPrice(startPrice)
 			.endPrice(endPrice)
 			.orderPriceType(orderPriceType)
-			.writer(writer)
-			.category(category)
+			.userId(userId)
+			.categoryId(categoryId)
 			.build();
 	}
+
 }
