@@ -1,5 +1,6 @@
 package com.toyproject.usedauction.api.controller.post;
 
+import com.toyproject.usedauction.api.ApiResponse;
 import com.toyproject.usedauction.api.service.post.PostService;
 import com.toyproject.usedauction.api.controller.post.request.PostCreateRequest;
 import com.toyproject.usedauction.api.service.post.response.PostCreateResponse;
@@ -21,9 +22,9 @@ public class PostController {
 	private final PostService postService;
 
 	@PostMapping("/posts")
-	public PostCreateResponse createPost(@Valid @RequestBody PostCreateRequest request) {
+	public ApiResponse<PostCreateResponse> createPost(@Valid @RequestBody PostCreateRequest request) {
 		LocalDateTime registerDateTime = LocalDateTime.now();
 
-		return postService.createPost(request.toServiceRequest(), registerDateTime);
+		return ApiResponse.ok(postService.createPost(request.toServiceRequest(), registerDateTime));
 	}
 }

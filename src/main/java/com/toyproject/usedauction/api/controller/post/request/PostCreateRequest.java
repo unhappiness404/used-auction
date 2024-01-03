@@ -26,9 +26,9 @@ public class PostCreateRequest {
 	private int endPrice;
 	@NotNull(message = "입찰금액 단위는 필수입니다.")
 	private OrderPriceType orderPriceType;
-	@NotBlank(message = "유저 id는 필수입니다.")
+	@NotNull(message = "유저 id는 필수입니다.")
 	private Long userId;
-	@NotBlank(message = "카테고리 id는 필수입니다.")
+	@NotNull(message = "카테고리 id는 필수입니다.")
 	private Long categoryId;
 
 	@Builder
