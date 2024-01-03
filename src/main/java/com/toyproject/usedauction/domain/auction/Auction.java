@@ -1,4 +1,4 @@
-package com.toyproject.usedauction.domain.joinUser;
+package com.toyproject.usedauction.domain.auction;
 
 import com.toyproject.usedauction.domain.post.Post;
 import com.toyproject.usedauction.domain.user.User;
@@ -12,13 +12,17 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "join_user")
-public class JoinUser {
+@Table(name = "auction")
+public class Auction {
 
 	@Id
-	@Column(name = "join_user_id")
+	@Column(name = "auction_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	private int price;
+
+	private boolean isEnd;
 
 	@ManyToOne
 	@JoinColumn(name = "users_id")
