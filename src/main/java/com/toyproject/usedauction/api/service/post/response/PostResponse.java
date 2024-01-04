@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class PostCreateResponse {
+public class PostResponse {
 
 	private Long id;
 	private String title;
@@ -24,7 +24,7 @@ public class PostCreateResponse {
 	private CategoryType categoryType;
 
 	@Builder
-	private PostCreateResponse(Long id, String title, String content,
+	private PostResponse(Long id, String title, String content,
 		ClosingTimeType closingTimeType,
 		LocalDateTime closingTime, int startPrice, int endPrice, OrderPriceType orderPriceType,
 		String writerName, CategoryType categoryType) {
@@ -40,8 +40,8 @@ public class PostCreateResponse {
 		this.categoryType = categoryType;
 	}
 
-	public static PostCreateResponse of(Post post) {
-		return PostCreateResponse.builder()
+	public static PostResponse of(Post post) {
+		return PostResponse.builder()
 			.id(post.getId())
 			.title(post.getTitle())
 			.content(post.getContent())
