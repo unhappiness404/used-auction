@@ -26,6 +26,7 @@ public class PostService {
 	private final UserRepository userRepository;
 	private final CategoryRepository categoryRepository;
 
+	@Transactional(readOnly = true)
 	public PostResponse getPost(long postId) {
 		return PostResponse.of(getPostById(postId));
 	}
@@ -48,6 +49,7 @@ public class PostService {
 		return PostUpdateResponse.of(post);
 	}
 
+	@Transactional
 	public void deletePost(long postId) {
 		Post post = getPostById(postId);
 		postRepository.delete(post);
