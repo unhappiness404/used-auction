@@ -5,6 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ResponseMessages {
 
+	POST_READ_SUCCESS("게시글 조회에 성공했습니다."),
+
 	POST_CREATE_SUCCESS("게시글 작성에 성공했습니다."),
 
 	POST_UPDATE_SUCCESS("게시글 수정에 성공했습니다."),
