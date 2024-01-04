@@ -1,6 +1,7 @@
 package com.toyproject.usedauction.api.controller.post;
 
 import com.toyproject.usedauction.api.ApiResponse;
+import com.toyproject.usedauction.api.controller.ResponseMessages;
 import com.toyproject.usedauction.api.controller.post.request.PostCreateRequest;
 import com.toyproject.usedauction.api.controller.post.request.PostUpdateRequest;
 import com.toyproject.usedauction.api.service.post.PostService;
@@ -31,14 +32,24 @@ public class PostController {
 		@Valid @RequestBody PostCreateRequest request
 	) {
 		LocalDateTime registerDateTime = LocalDateTime.now();
-		return ApiResponse.ok(postService.createPost(request.toServiceRequest(), registerDateTime));
+		PostCreateResponse response = postService.createPost(request.toServiceRequest(), registerDateTime);
+
+		return ApiResponse.ok(ResponseMessages.POST_CREATE_SUCCESS, response);
 	}
 
 	@PatchMapping("/{postId}")
 	public ApiResponse<PostUpdateResponse> updatePost(
 		@Valid @RequestBody PostUpdateRequest request,
 		@PathVariable long postId) {
-		return ApiResponse.ok(postService.updatePost(request.toServiceRequest(), postId));
+		PostUpdateResponse response = postService.updatePost(request.toServiceRequest(), postId);
+
+		return ApiResponse.ok(ResponseMessages.POST_UPDATE_SUCCESS, response);
 	}
 
+	@DeleteMapping("/{postId}")
+	public ApiResponse<Long> deletePost(@PathVariable long postId) {
+		postService.deletePost(postId);
+
+		return ApiResponse.ok(ResponseMessages.POST_DELETE_SUCCESS, Long.valueOf(postId));
+	}
 }

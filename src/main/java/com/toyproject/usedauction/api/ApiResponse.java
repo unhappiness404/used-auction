@@ -23,11 +23,11 @@ public class ApiResponse<T> {
 		return new ApiResponse<>(httpStatus, message, data);
 	}
 
-	public static <T> ApiResponse<T> ok(T data) {
-		return of(HttpStatus.OK, ResponseMessages.POST_CREATE_SUCCESS.getMessage(), data);
+	public static <T> ApiResponse<T> ok(ResponseMessages message, T data) {
+		return of(HttpStatus.OK, message.getMessage(), data);
 	}
 
-	public static <T> ApiResponse<T> badRequest(T data, String message) {
+	public static <T> ApiResponse<T> badRequest(String message, T data) {
 		return of(HttpStatus.BAD_REQUEST, message, data);
 	}
 

@@ -44,6 +44,11 @@ public class PostService {
 		return PostUpdateResponse.of(post);
 	}
 
+	public void deletePost(long postId) {
+		Post post = getPostById(postId);
+		postRepository.delete(post);
+	}
+
 	private Post getPostById(Long postId) {
 		return postRepository.findById(postId)
 			.orElseThrow(() -> new NotFoundPostException());

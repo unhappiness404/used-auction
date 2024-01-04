@@ -1,6 +1,7 @@
 package com.toyproject.usedauction.exception;
 
 import com.toyproject.usedauction.domain.category.exception.NotFoundCategoryException;
+import com.toyproject.usedauction.domain.post.exception.NotFoundPostException;
 import com.toyproject.usedauction.domain.user.exception.NotFoundUserException;
 import java.util.Arrays;
 
@@ -8,6 +9,8 @@ public enum ExceptionMessages {
 	NOT_FOUND_ERROR_TYPE("시스템 오류가 발생하였습니다.", NotFoundErrorTypeException.class),
 
 	NOT_FOUND_USER("존재하지 않는 유저입니다.", NotFoundUserException.class),
+
+	NOT_FOUND_POST_EXCEPTION("존재하지 않는 게시글입니다.", NotFoundPostException.class),
 
 	NOT_FOUND_CATEGORY_EXCEPTION("존재하지 않는 카테고리입니다.", NotFoundCategoryException.class);
 
